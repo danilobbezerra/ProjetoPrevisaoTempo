@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  projetoprevisaotempo.ui.web:
+    image: ${DOCKER_REGISTRY-}projetoprevisaotempouiweb
+    build:
+      context: .
+      dockerfile: ProjetoPrevisaoTempo.UI.Web/Dockerfile
+
+  projetoprevisaotempo.api:
+    image: ${DOCKER_REGISTRY-}projetoprevisaotempoapi
+    build:
+      context: .
+      dockerfile: ProjetoPrevisaoTempo.Api/Dockerfile
+
