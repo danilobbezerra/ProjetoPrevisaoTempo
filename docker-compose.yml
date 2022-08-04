@@ -6,10 +6,48 @@ services:
     build:
       context: .
       dockerfile: ProjetoPrevisaoTempo.UI.Web/Dockerfile
+    ports:
+        - 5001:80
+    environment:
+        ASPNETCORE_ENVIRONMENT: Development
+        ASPNETCORE_URLS: "http://+"
+        TZ: "America/Sao_Paulo"
+        API_BASE_URL: "http://api"
+    extra_hosts:
+        - "host.docker.internal:host-gateway"   
+    links:
+        - projetoprevisaotempo.api:api     
+    depends_on:
+        -  projetoprevisaotempo.api
+        -  mongodb
 
   projetoprevisaotempo.api:
     image: ${DOCKER_REGISTRY-}projetoprevisaotempoapi
     build:
       context: .
       dockerfile: ProjetoPrevisaoTempo.Api/Dockerfile
+    ports:
+        - 5002:80
+    environment:
+        ASPNETCORE_ENVIRONMENT: Development
+        ASPNETCORE_URLS: "http://+"
+        TZ: "America/Sao_Paulo"
+        MONGO_CONNECTION: "mongodb://host.docker.internal:27017"
+        MONGO_DATABASE_NAME: "ProjetoPrevisaoTempo"
+    extra_hosts:
+        - "host.docker.internal:host-gateway"
+    depends_on:
+        -  mongodb
+        
 
+
+
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - 27017:27017
+    volumes:
+      - ~/apps/mongo:/data/db
+    #environment:
+    #  - MONGO_INITDB_ROOT_USERNAME=citizix
+    #  - MONGO_INITDB_ROOT_PASSWORD=S3cret

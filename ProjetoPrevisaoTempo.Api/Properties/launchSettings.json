@@ -5,7 +5,9 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MONGO_CONNECTION": "mongodb://localhost:27017",
+        "MONGO_DATABASE_NAME": "ProjetoPrevisaoTempo"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7030;http://localhost:5030"

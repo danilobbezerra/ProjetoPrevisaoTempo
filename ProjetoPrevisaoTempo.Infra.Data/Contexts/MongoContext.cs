@@ -54,9 +54,12 @@ namespace ProjetoPrevisaoTempo.Infra.Data.Contexts
             }
 
             // Configure mongo (You can inject the config, just to simplify)
-            MongoClient = new MongoClient(_configuration["MongoSettings:Connection"]);
+            //MongoClient = new MongoClient(_configuration["MongoSettings:Connection"]);
+            MongoClient = new MongoClient(Environment.GetEnvironmentVariable("MONGO_CONNECTION"));
 
-            Database = MongoClient.GetDatabase(_configuration["MongoSettings:DatabaseName"]);
+            
+
+            Database = MongoClient.GetDatabase(Environment.GetEnvironmentVariable("MONGO_DATABASE_NAME"));
         }
 
         public IMongoCollection<T> GetCollection<T>(string name)

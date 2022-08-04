@@ -2,12 +2,10 @@
 {
     public class AppSettings
     {
-        public PrevisaoTempo? PrevisaoTempoApi { get; set; }
-
-
-        public class PrevisaoTempo
+        public AppSettings()
         {
-            public string BaseUrl { get; set; }
+            BaseUrl = Environment.GetEnvironmentVariable("API_BASE_URL");
         }
+        public string? BaseUrl { get; set; }
     }
 }
