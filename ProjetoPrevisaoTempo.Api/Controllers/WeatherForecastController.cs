@@ -26,15 +26,15 @@ namespace ProjetoPrevisaoTempo.Api.Controllers
             _weatherService = weatherService;
         }
 
-        [HttpGet("GetCityesTempToday/{type}")]
-        public async Task<IActionResult> GetCityesTempToday([FromRoute][Required] string type)
+        [HttpGet("GetCityesTempToday/{type}/{total}")]
+        public async Task<IActionResult> GetCityesTempToday([FromRoute][Required] string type, int total = 3)
         {
             if (string.IsNullOrEmpty(type) || !Enum.TryParse(type, out TypeTempEnum tempEnum))
                 return BadRequest();
 
-            var result = await _weatherService.GetCityesTempToday(tempEnum);
+            var result = await _weatherService.GetCityesTempToday(tempEnum, total);
 
-            if(result != null && result.Id != ObjectId.Empty)
+            if(result.Any())
                 return Ok(result);
 
             return NotFound();

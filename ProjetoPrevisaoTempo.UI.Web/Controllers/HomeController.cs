@@ -21,14 +21,30 @@ namespace ProjetoPrevisaoTempo.UI.Web.Controllers
         {
             var client = await _apiModelFactory.GetClientAsync();
 
-            var request = new RestRequest("WeatherForecast/GetCityesTempToday/{type}");
-            request.AddUrlSegment("type", "Hot");
+            var requestHot = new RestRequest("WeatherForecast/GetCityesTempToday/{type}/{total}");
+            requestHot.AddUrlSegment("type", "Hot");
+            requestHot.AddUrlSegment("total", 3);
 
-            var response = await client.ExecuteGetAsync<WeatherModel>(request);
-            if (!response.IsSuccessful)
+            var responseHot = await client.ExecuteGetAsync<List<WeatherModel>>(requestHot);
+            if (!responseHot.IsSuccessful)
                 throw new HttpRequestException();
 
-            return View(response.Data);
+
+
+            var requestCold = new RestRequest("WeatherForecast/GetCityesTempToday/{type}/{total}");
+            requestCold.AddUrlSegment("type", "Cold");
+            requestCold.AddUrlSegment("total", 3);
+
+            var responseCold = await client.ExecuteGetAsync<List<WeatherModel>>(requestCold);
+            if (!responseCold.IsSuccessful)
+                throw new HttpRequestException();
+
+            return View(new HomeModel() 
+            { 
+                MaxHotToday = responseHot.Data,
+                MinHotToday = responseCold.Data
+            
+            });
         }
 
         public IActionResult Privacy()

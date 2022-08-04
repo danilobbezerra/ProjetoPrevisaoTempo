@@ -18,14 +18,17 @@ namespace ProjetoPrevisaoTempo.Application.Services
             _weatherRepository = weatherRepository;
             _uow = uow;
         }
-        public async Task<Weather?> GetCityesTempToday(TypeTempEnum type)
+        public async Task<List<Weather>?> GetCityesTempToday(TypeTempEnum type, int total)
         {
             var result = await _weatherRepository.GetAll();
 
+            if (result == null)
+                return null;
+
             return type switch
             {
-                TypeTempEnum.Hot => result.OrderByDescending(x => x.Max).FirstNonDefault(),
-                TypeTempEnum.Cold => result.OrderBy(x => x.Min).FirstNonDefault(),
+                TypeTempEnum.Hot => result.OrderByDescending(x => x.Max).Take(total).ToList(),
+                TypeTempEnum.Cold => result.OrderBy(x => x.Min).Take(total).ToList(),
                 _ => null,
             };
         }

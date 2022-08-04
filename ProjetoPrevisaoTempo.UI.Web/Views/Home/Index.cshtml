@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HomeModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -17,9 +19,13 @@
                         Cidades mais quentes hoje
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        @foreach (var item in Model.MaxHotToday)
+                        {
+                            <h5 class="card-title">@item.City.Name</h5>
+                            <p class="card-text">Min: @item.Min / Max: @item.Max </p>
+                        }
+
+                        
                     </div>
                 </div>
 
@@ -31,9 +37,11 @@
                         Cidades mais frias hoje
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        @foreach (var item in Model.MinHotToday)
+                        {
+                            <h5 class="card-title">@item.City.Name</h5>
+                            <p class="card-text">Min: @item.Min / Max: @item.Max </p>
+                        }
                     </div>
                 </div>
 
@@ -42,8 +50,8 @@
             <!-- Force next columns to break to new line -->
             <div class="w-100"></div>
 
-            <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
-            <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+@*            <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+            <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>*@
         </div>
     </div>
 

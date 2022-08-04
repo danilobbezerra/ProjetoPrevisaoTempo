@@ -11,9 +11,9 @@ namespace ProjetoPrevisaoTempo.Tests
     public class TestWeaTherService
     {
         [Theory]
-        [InlineData(TypeTempEnum.Hot)]
-        [InlineData(TypeTempEnum.Cold)]
-        public async Task Return_Weather(TypeTempEnum type)
+        [InlineData(TypeTempEnum.Hot, 3)]
+        [InlineData(TypeTempEnum.Cold, 3)]
+        public async Task Return_Weather(TypeTempEnum type, int total)
         {
             var mockRepository = new Mock<IWeatherRepository>();
             var mockUow = new Mock<IUnitOfWork>();
@@ -21,7 +21,7 @@ namespace ProjetoPrevisaoTempo.Tests
 
             var service = new WeatherService(mockRepository.Object, mockUow.Object);
 
-            var result = await service.GetCityesTempToday(type);
+            var result = await service.GetCityesTempToday(type, total);
 
             result.Should().NotBeNull();
         }
@@ -35,7 +35,7 @@ namespace ProjetoPrevisaoTempo.Tests
 
             var service = new WeatherService(mockRepository.Object, mockUow.Object);
 
-            var result = await service.GetCityesTempToday(TypeTempEnum.MoreOrLess);
+            var result = await service.GetCityesTempToday(TypeTempEnum.MoreOrLess, 3);
 
             result.Should().BeNull();
         }
