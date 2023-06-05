@@ -1,5 +1,4 @@
 ﻿using ProjetoPrevisaoTempo.Infra.CrossCutting.IoC;
-using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ProjetoPrevisaoTempo.Api.Configurations

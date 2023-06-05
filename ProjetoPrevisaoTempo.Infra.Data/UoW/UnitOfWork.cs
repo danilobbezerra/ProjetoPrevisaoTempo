@@ -1,5 +1,4 @@
-﻿using Funq;
-using ProjetoPrevisaoTempo.Infra.Data.Contexts;
+﻿using ProjetoPrevisaoTempo.Infra.Data.Contexts;
 using System.Diagnostics.CodeAnalysis;
 
 namespace ProjetoPrevisaoTempo.Infra.Data.UoW

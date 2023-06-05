@@ -5,7 +5,7 @@ using Moq;
 using ProjetoPrevisaoTempo.Api.Controllers;
 using ProjetoPrevisaoTempo.Application.Interfaces;
 using ProjetoPrevisaoTempo.Application.Services;
-using ProjetoPrevisaoTempo.Domain.Temperaturas;
+using ProjetoPrevisaoTempo.Domain.Weathers;
 using ProjetoPrevisaoTempo.Tests.Fixtures;
 
 namespace ProjetoPrevisaoTempo.Tests

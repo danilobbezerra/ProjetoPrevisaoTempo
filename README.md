@@ -29,3 +29,11 @@
 
 - Docker
 - Docker-Compose
+
+
+## How To run this project:
+
+- In root folder run command: docker-compose up -d
+- Aceess a API swagger: http://localhost:5002/swagger
+- Call endpoint PUT:  /WeatherForecast
+- Access front-end:  http://localhost:5001

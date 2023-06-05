@@ -1,9 +1,8 @@
 ﻿using MongoDB.Bson;
 using ProjetoPrevisaoTempo.Application.Interfaces;
-using ProjetoPrevisaoTempo.Domain.Temperaturas;
+using ProjetoPrevisaoTempo.Domain.Weathers;
 using ProjetoPrevisaoTempo.Infra.Data.Repository;
 using ProjetoPrevisaoTempo.Infra.Data.UoW;
-using ServiceStack;
 
 namespace ProjetoPrevisaoTempo.Application.Services
 {

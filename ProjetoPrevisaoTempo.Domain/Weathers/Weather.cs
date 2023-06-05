@@ -1,9 +1,8 @@
-﻿using MongoDB.Bson;
-using ProjetoPrevisaoTempo.Domain.Cidades;
-using ProjetoPrevisaoTempo.Domain.Temperatures;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using MongoDB.Bson;
+using ProjetoPrevisaoTempo.Domain.Cities;
 
-namespace ProjetoPrevisaoTempo.Domain.Temperaturas
+namespace ProjetoPrevisaoTempo.Domain.Weathers
 {
     [ExcludeFromCodeCoverage]
     public class Weather

@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Moq;
 using ProjetoPrevisaoTempo.Application.Services;
-using ProjetoPrevisaoTempo.Domain.Temperaturas;
+using ProjetoPrevisaoTempo.Domain.Weathers;
 using ProjetoPrevisaoTempo.Infra.Data.Repository;
 using ProjetoPrevisaoTempo.Infra.Data.UoW;
 using ProjetoPrevisaoTempo.Tests.Fixtures;

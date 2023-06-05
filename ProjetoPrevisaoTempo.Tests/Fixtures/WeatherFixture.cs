@@ -1,8 +1,7 @@
 ﻿using Bogus;
 using MongoDB.Bson;
-using ProjetoPrevisaoTempo.Domain.Cidades;
-using ProjetoPrevisaoTempo.Domain.Temperaturas;
-using ProjetoPrevisaoTempo.Domain.Temperatures;
+using ProjetoPrevisaoTempo.Domain.Cities;
+using ProjetoPrevisaoTempo.Domain.Weathers;
 
 namespace ProjetoPrevisaoTempo.Tests.Fixtures
 {

@@ -19,7 +19,7 @@ namespace ProjetoPrevisaoTempo.UI.Web.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            var client = await _apiModelFactory.GetClientAsync();
+            var client = _apiModelFactory.GetClientAsync();
 
             var requestHot = new RestRequest("WeatherForecast/GetCityesTempToday/{type}/{total}");
             requestHot.AddUrlSegment("type", "Hot");

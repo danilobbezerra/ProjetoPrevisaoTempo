@@ -11,14 +11,11 @@ namespace ProjetoPrevisaoTempo.UI.Web.Factories
             _appSettings = appSettings;
         }
 
-        private string ApIBaseUrl => _appSettings.BaseUrl;
+        private string ApIBaseUrl => _appSettings.BaseUrl ?? string.Empty;
 
-        public async Task<RestClient> GetClientAsync()
+        public RestClient GetClientAsync()
         {
-
-            var client = new RestClient(ApIBaseUrl);
-
-            return client;
+            return new RestClient(ApIBaseUrl);
         }
     }
 }

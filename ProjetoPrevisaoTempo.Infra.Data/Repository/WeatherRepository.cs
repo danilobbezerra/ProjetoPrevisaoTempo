@@ -1,6 +1,6 @@
-﻿using ProjetoPrevisaoTempo.Domain.Temperaturas;
-using ProjetoPrevisaoTempo.Infra.Data.Contexts;
+﻿using ProjetoPrevisaoTempo.Infra.Data.Contexts;
 using System.Diagnostics.CodeAnalysis;
+using ProjetoPrevisaoTempo.Domain.Weathers;
 
 namespace ProjetoPrevisaoTempo.Infra.Data.Repository
 {

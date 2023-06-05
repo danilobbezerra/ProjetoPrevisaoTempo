@@ -1,14 +1,11 @@
 using Bogus;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using ProjetoPrevisaoTempo.Application.Interfaces;
 using ProjetoPrevisaoTempo.Application.Services;
-using ProjetoPrevisaoTempo.Domain.Cidades;
-using ProjetoPrevisaoTempo.Domain.Temperaturas;
-using ProjetoPrevisaoTempo.Domain.Temperatures;
-using ServiceStack.Text;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using ProjetoPrevisaoTempo.Domain.Cities;
+using ProjetoPrevisaoTempo.Domain.Weathers;
 
 namespace ProjetoPrevisaoTempo.Api.Controllers
 {
@@ -43,26 +40,32 @@ namespace ProjetoPrevisaoTempo.Api.Controllers
 
         [HttpPut(Name = "PopulateDatabaseFakeData")]
         [ExcludeFromCodeCoverage]
-        public IActionResult PopulateDatabaseFakeData()
+        public async Task<IActionResult> PopulateDatabaseFakeData()
         {
-            var fakeCity = new Faker<City>();
-            fakeCity.RuleFor(s => s.Name, f => f.Address.City());
-            fakeCity.RuleFor(s => s.Country, f => f.Address.Country());
-            fakeCity.RuleFor(s => s.Population, f => f.Random.Double());
+            try
+            {
+                var fakeCity = new Faker<City>();
+                fakeCity.RuleFor(s => s.Name, f => f.Address.City());
+                fakeCity.RuleFor(s => s.Country, f => f.Address.Country());
+                fakeCity.RuleFor(s => s.Population, f => f.Random.Double());
 
 
-            var fakeData = new Faker<Weather>();
-            fakeData.RuleFor(s => s.Date, f=> f.Date.Future());
-            fakeData.RuleFor(s => s.Cnt, CntEnum.Grau);
-            fakeData.RuleFor(s => s.Min, f => f.Random.Number(10));
-            fakeData.RuleFor(s => s.Max, f => f.Random.Number(10));
-            fakeData.RuleFor(s => s.City, f => fakeCity.Generate());
-            fakeData.RuleFor(s => s.Humidity, f => f.Random.Double());
+                var fakeData = new Faker<Weather>();
+                fakeData.RuleFor(s => s.Date, f => f.Date.Future());
+                fakeData.RuleFor(s => s.Cnt, CntEnum.Grau);
+                fakeData.RuleFor(s => s.Min, f => f.Random.Number(10));
+                fakeData.RuleFor(s => s.Max, f => f.Random.Number(10));
+                fakeData.RuleFor(s => s.City, _ => fakeCity.Generate());
+                fakeData.RuleFor(s => s.Humidity, f => f.Random.Double());
 
+                return Ok(await _weatherService.Create(fakeData.Generate(50)));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Erro ao cadastrar dados iniciais");
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
 
-            var result = _weatherService.Create(fakeData.Generate(50));
-
-            return Ok();
         }
     }
 }

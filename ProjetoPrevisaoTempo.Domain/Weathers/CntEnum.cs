@@ -1,4 +1,4 @@
-﻿namespace ProjetoPrevisaoTempo.Domain.Temperatures
+﻿namespace ProjetoPrevisaoTempo.Domain.Weathers
 {
     public enum CntEnum
     {

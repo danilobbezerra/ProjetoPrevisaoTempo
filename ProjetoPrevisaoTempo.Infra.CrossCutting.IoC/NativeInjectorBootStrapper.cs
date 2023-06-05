@@ -16,10 +16,6 @@ namespace ProjetoPrevisaoTempo.Infra.CrossCutting.IoC
             //// Application
             services.AddTransient<IWeatherService, WeatherService>();
 
-
-            //services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(configuration.GetConnectionString("MongoDb")));
-
-
             //// Infra - Data
             services.AddScoped<IMongoContext, MongoContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
